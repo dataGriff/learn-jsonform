@@ -363,6 +363,9 @@ components:
     Person:
       $ref: '../schemas/person.schema.json'
 
+    Health:
+      $ref: '../schemas/health.schema.json'
+
     PaginationMeta:
       type: object
       properties:

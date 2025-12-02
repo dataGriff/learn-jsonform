@@ -16,7 +16,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
 // Check that shared schemas exist
-const sharedSchemas = ['person.schema.json', 'cheese.schema.json', 'whiskey.schema.json'];
+const sharedSchemas = ['person.schema.json', 'health.schema.json', 'cheese.schema.json', 'whiskey.schema.json'];
 const uiSchemas = ['cheese.jsonforms.json', 'whiskey.jsonforms.json'];
 
 console.log('🔍 Shared Schema Architecture Validation');

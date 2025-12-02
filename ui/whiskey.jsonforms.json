@@ -58,6 +58,54 @@
     },
     {
       "type": "Group",
+      "label": "🏥 Health Information", 
+      "elements": [
+        {
+          "type": "Control",
+          "scope": "#/properties/health/properties/consentToDataUse"
+        },
+        {
+          "type": "HorizontalLayout",
+          "elements": [
+            {
+              "type": "Control",
+              "scope": "#/properties/health/properties/smokingStatus"
+            },
+            {
+              "type": "Control",
+              "scope": "#/properties/health/properties/alcoholConsumption"
+            }
+          ]
+        },
+        {
+          "type": "Control",
+          "scope": "#/properties/health/properties/hasAllergies"
+        },
+        {
+          "type": "Control",
+          "scope": "#/properties/health/properties/allergies",
+          "rule": {
+            "effect": "SHOW",
+            "condition": {
+              "scope": "#/properties/health/properties/hasAllergies",
+              "schema": {
+                "const": true
+              }
+            }
+          }
+        },
+        {
+          "type": "Control",
+          "scope": "#/properties/health/properties/medications"
+        },
+        {
+          "type": "Control",
+          "scope": "#/properties/health/properties/healthConditions"
+        }
+      ]
+    },
+    {
+      "type": "Group",
       "label": "🥃 Whiskey Information",
       "elements": [
         {

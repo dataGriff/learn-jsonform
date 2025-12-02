@@ -6,10 +6,11 @@
  */
 
 import personSchema from '../../schemas/person.schema.json';
+import healthSchema from '../../schemas/health.schema.json';
 
 /**
  * Resolves $ref references in a JSON Schema
- * Currently supports local file references to person.schema.json
+ * Currently supports local file references to person.schema.json and health.schema.json
  */
 export function resolveSchemaReferences(schema: any): any {
   if (!schema || typeof schema !== 'object') {
@@ -26,6 +27,17 @@ export function resolveSchemaReferences(schema: any): any {
     if (schema.$ref === './person.schema.json') {
       // Return the resolved person schema but preserve other properties
       const resolved = { ...personSchema };
+      
+      // If there are other properties alongside $ref, merge them
+      const { $ref, ...otherProps } = schema;
+      return {
+        ...resolved,
+        ...otherProps
+      };
+    }
+    if (schema.$ref === './health.schema.json') {
+      // Return the resolved health schema but preserve other properties
+      const resolved = { ...healthSchema };
       
       // If there are other properties alongside $ref, merge them
       const { $ref, ...otherProps } = schema;

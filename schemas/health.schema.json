@@ -1,0 +1,82 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "title": "Health Information",
+  "description": "Basic health information for assessment purposes",
+  "properties": {
+    "hasAllergies": {
+      "type": "boolean",
+      "title": "Has Allergies",
+      "description": "Do you have any known allergies?"
+    },
+    "allergies": {
+      "type": "array",
+      "title": "Allergies",
+      "description": "List of known allergies",
+      "items": {
+        "type": "string",
+        "title": "Allergy",
+        "minLength": 1,
+        "maxLength": 100
+      }
+    },
+    "medications": {
+      "type": "array",
+      "title": "Current Medications",
+      "description": "List of current medications (optional)",
+      "items": {
+        "type": "string",
+        "title": "Medication",
+        "minLength": 1,
+        "maxLength": 100
+      }
+    },
+    "smokingStatus": {
+      "type": "string",
+      "title": "Smoking Status",
+      "description": "Current smoking status",
+      "enum": ["Never", "Former", "Current", "Prefer not to say"]
+    },
+    "alcoholConsumption": {
+      "type": "string",
+      "title": "Alcohol Consumption",
+      "description": "Typical alcohol consumption level",
+      "enum": ["None", "Light (1-2 drinks/week)", "Moderate (3-7 drinks/week)", "Heavy (8+ drinks/week)", "Prefer not to say"]
+    },
+    "healthConditions": {
+      "type": "array",
+      "title": "Health Conditions",
+      "description": "Any relevant health conditions (optional)",
+      "items": {
+        "type": "string",
+        "enum": ["Diabetes", "High Blood Pressure", "Heart Disease", "Liver Disease", "Kidney Disease", "Other"]
+      }
+    },
+    "consentToDataUse": {
+      "type": "boolean",
+      "title": "Consent to Data Use",
+      "description": "I consent to the collection and use of this health information for research purposes"
+    }
+  },
+  "required": ["hasAllergies", "consentToDataUse"],
+  "dependencies": {
+    "hasAllergies": {
+      "oneOf": [
+        {
+          "properties": {
+            "hasAllergies": { "const": false }
+          }
+        },
+        {
+          "properties": {
+            "hasAllergies": { "const": true },
+            "allergies": {
+              "minItems": 1
+            }
+          },
+          "required": ["allergies"]
+        }
+      ]
+    }
+  }
+}

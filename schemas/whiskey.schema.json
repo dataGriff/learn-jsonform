@@ -9,6 +9,11 @@
       "title": "Reviewer Details",
       "description": "Information about the person reviewing this whiskey"
     },
+    "health": {
+      "$ref": "./health.schema.json",
+      "title": "Health Information",
+      "description": "Basic health information for assessment purposes"
+    },
     "whiskeyName": {
       "type": "string",
       "title": "Whiskey Name",
@@ -97,6 +102,7 @@
   },
   "required": [
     "reviewer",
+    "health",
     "whiskeyName",
     "whiskeyType"
   ]
