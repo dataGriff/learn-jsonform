@@ -68,7 +68,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: './schemas/cheese.schema.json'
+              $ref: '../schemas/cheese.schema.json'
       responses:
         '201':
           description: Cheese created successfully
@@ -127,7 +127,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: './schemas/cheese.schema.json'
+              $ref: '../schemas/cheese.schema.json'
       responses:
         '200':
           description: Cheese updated successfully
@@ -216,7 +216,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: './schemas/whiskey.schema.json'
+              $ref: '../schemas/whiskey.schema.json'
       responses:
         '201':
           description: Whiskey created successfully
@@ -275,7 +275,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: './schemas/whiskey.schema.json'
+              $ref: '../schemas/whiskey.schema.json'
       responses:
         '200':
           description: Whiskey updated successfully
@@ -318,7 +318,7 @@ components:
     # Output schemas extend shared schemas with metadata
     Cheese:
       allOf:
-        - $ref: './schemas/cheese.schema.json'
+        - $ref: '../schemas/cheese.schema.json'
         - type: object
           required:
             - id
@@ -340,7 +340,7 @@ components:
 
     Whiskey:
       allOf:
-        - $ref: './schemas/whiskey.schema.json'
+        - $ref: '../schemas/whiskey.schema.json'
         - type: object
           required:
             - id
@@ -359,6 +359,9 @@ components:
               type: string
               format: date-time
               description: "Timestamp when the record was last updated"
+
+    Person:
+      $ref: '../schemas/person.schema.json'
 
     PaginationMeta:
       type: object
