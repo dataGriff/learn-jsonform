@@ -1,0 +1,61 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "title": "Person Details",
+  "description": "Common person information for data collection",
+  "properties": {
+    "firstName": {
+      "type": "string",
+      "title": "First Name",
+      "description": "Person's first name",
+      "minLength": 1,
+      "maxLength": 50
+    },
+    "lastName": {
+      "type": "string",
+      "title": "Last Name", 
+      "description": "Person's last name",
+      "minLength": 1,
+      "maxLength": 50
+    },
+    "email": {
+      "type": "string",
+      "title": "Email Address",
+      "description": "Person's email address",
+      "format": "email",
+      "maxLength": 255
+    },
+    "dateOfBirth": {
+      "type": "string",
+      "title": "Date of Birth",
+      "description": "Person's date of birth",
+      "format": "date"
+    },
+    "location": {
+      "type": "object",
+      "title": "Location",
+      "description": "Person's location information",
+      "properties": {
+        "country": {
+          "type": "string",
+          "title": "Country",
+          "description": "Country of residence",
+          "maxLength": 100
+        },
+        "city": {
+          "type": "string",
+          "title": "City",
+          "description": "City of residence",
+          "maxLength": 100
+        }
+      }
+    },
+    "experienceLevel": {
+      "type": "string",
+      "title": "Experience Level",
+      "description": "Level of experience with the subject",
+      "enum": ["Beginner", "Intermediate", "Advanced", "Expert"]
+    }
+  },
+  "required": ["firstName", "lastName", "email"]
+}

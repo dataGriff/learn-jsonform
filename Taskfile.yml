@@ -78,6 +78,11 @@ tasks:
     cmds:
       - node api/validate-schemas.js
 
+  sync-person-schema:
+    desc: Synchronize person details across all evaluation schemas
+    cmds:
+      - node bin/sync-person-schema.js
+
   help:
     desc: Show help information about the project
     cmds:
@@ -99,6 +104,7 @@ tasks:
         echo "  task lint:fix    - Run linter with auto-fix"
         echo "  task typecheck   - Run TypeScript type checking"
         echo "  task validate-schemas - Check JSON Forms ↔ OpenAPI consistency"
+        echo "  task sync-person-schema - Sync person details across schemas"
         echo "  task clean       - Remove all artifacts"
         echo "  task clean:build - Remove build artifacts only"
         echo "  task rebuild     - Clean and rebuild"

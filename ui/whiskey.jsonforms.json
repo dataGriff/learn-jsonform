@@ -3,7 +3,62 @@
   "elements": [
     {
       "type": "Group",
-      "label": "Basic Information",
+      "label": "👤 Reviewer Information",
+      "elements": [
+        {
+          "type": "HorizontalLayout",
+          "elements": [
+            {
+              "type": "Control",
+              "scope": "#/properties/reviewer/properties/firstName"
+            },
+            {
+              "type": "Control",
+              "scope": "#/properties/reviewer/properties/lastName"
+            }
+          ]
+        },
+        {
+          "type": "Control",
+          "scope": "#/properties/reviewer/properties/email"
+        },
+        {
+          "type": "HorizontalLayout",
+          "elements": [
+            {
+              "type": "Control",
+              "scope": "#/properties/reviewer/properties/dateOfBirth"
+            },
+            {
+              "type": "Control",
+              "scope": "#/properties/reviewer/properties/experienceLevel"
+            }
+          ]
+        },
+        {
+          "type": "Group",
+          "label": "Location",
+          "elements": [
+            {
+              "type": "HorizontalLayout",
+              "elements": [
+                {
+                  "type": "Control",
+                  "scope": "#/properties/reviewer/properties/location/properties/country"
+                },
+                {
+                  "type": "Control",
+                  "scope": "#/properties/reviewer/properties/location/properties/city"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "Group",
+      "label": "🥃 Whiskey Information",
       "elements": [
         {
           "type": "Control",
@@ -26,7 +81,7 @@
     },
     {
       "type": "Group",
-      "label": "Production Details",
+      "label": "Details",
       "elements": [
         {
           "type": "HorizontalLayout",
@@ -37,7 +92,7 @@
             },
             {
               "type": "Control",
-              "scope": "#/properties/caskType"
+              "scope": "#/properties/ageStatement"
             }
           ]
         },
@@ -46,20 +101,14 @@
           "elements": [
             {
               "type": "Control",
-              "scope": "#/properties/ageStatement"
+              "scope": "#/properties/abv"
             },
             {
               "type": "Control",
-              "scope": "#/properties/abv"
+              "scope": "#/properties/caskType"
             }
           ]
-        }
-      ]
-    },
-    {
-      "type": "Group",
-      "label": "Additional Info",
-      "elements": [
+        },
         {
           "type": "HorizontalLayout",
           "elements": [
@@ -77,7 +126,7 @@
     },
     {
       "type": "Group",
-      "label": "Your Review",
+      "label": "Evaluation",
       "elements": [
         {
           "type": "Control",

@@ -1,6 +1,14 @@
 {
+  "$schema": "http://json-schema.org/draft-07/schema#",
   "type": "object",
+  "title": "Cheese Evaluation",
+  "description": "Cheese tasting and evaluation form with reviewer details",
   "properties": {
+    "reviewer": {
+      "$ref": "./person.schema.json",
+      "title": "Reviewer Details",
+      "description": "Information about the person reviewing this cheese"
+    },
     "cheeseName": {
       "type": "string",
       "title": "Cheese Name",
@@ -9,7 +17,13 @@
     "cheeseType": {
       "type": "string",
       "title": "Cheese Type",
-      "enum": ["Soft", "Semi-soft", "Semi-hard", "Hard", "Blue"],
+      "enum": [
+        "Soft",
+        "Semi-soft",
+        "Semi-hard",
+        "Hard",
+        "Blue"
+      ],
       "description": "Type of cheese based on texture"
     },
     "origin": {
@@ -20,7 +34,13 @@
     "milkType": {
       "type": "string",
       "title": "Milk Type",
-      "enum": ["Cow", "Goat", "Sheep", "Buffalo", "Mixed"],
+      "enum": [
+        "Cow",
+        "Goat",
+        "Sheep",
+        "Buffalo",
+        "Mixed"
+      ],
       "description": "Type of milk used to make the cheese"
     },
     "ageInMonths": {
@@ -33,7 +53,12 @@
     "flavorProfile": {
       "type": "string",
       "title": "Flavor Profile",
-      "enum": ["Mild", "Medium", "Sharp", "Extra Sharp"],
+      "enum": [
+        "Mild",
+        "Medium",
+        "Sharp",
+        "Extra Sharp"
+      ],
       "description": "Intensity of the cheese flavor"
     },
     "isPasteurized": {
@@ -54,5 +79,9 @@
       "description": "Your personal notes about this cheese"
     }
   },
-  "required": ["cheeseName", "cheeseType"]
+  "required": [
+    "reviewer",
+    "cheeseName",
+    "cheeseType"
+  ]
 }

@@ -17,6 +17,7 @@ This project demonstrates how to use JSON Forms with React and Material UI to cr
 - Form data validation
 - Real-time JSON data preview
 - Tabbed interface for multiple forms
+- **Shared person details** across all evaluation forms
 - **OpenAPI specification** aligned with form schemas for API development
 
 ## Prerequisites

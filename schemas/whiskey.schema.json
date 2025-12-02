@@ -1,6 +1,14 @@
 {
+  "$schema": "http://json-schema.org/draft-07/schema#",
   "type": "object",
+  "title": "Whiskey Evaluation",
+  "description": "Whiskey tasting and evaluation form with reviewer details",
   "properties": {
+    "reviewer": {
+      "$ref": "./person.schema.json",
+      "title": "Reviewer Details",
+      "description": "Information about the person reviewing this whiskey"
+    },
     "whiskeyName": {
       "type": "string",
       "title": "Whiskey Name",
@@ -9,7 +17,16 @@
     "whiskeyType": {
       "type": "string",
       "title": "Whiskey Type",
-      "enum": ["Single Malt", "Blended", "Bourbon", "Rye", "Irish", "Japanese", "Canadian", "Banana"],
+      "enum": [
+        "Single Malt",
+        "Blended",
+        "Bourbon",
+        "Rye",
+        "Irish",
+        "Japanese",
+        "Canadian",
+        "Banana"
+      ],
       "description": "Type of whiskey"
     },
     "distillery": {
@@ -39,7 +56,14 @@
     "caskType": {
       "type": "string",
       "title": "Cask Type",
-      "enum": ["Ex-Bourbon", "Sherry", "Port", "Wine", "Virgin Oak", "Mixed"],
+      "enum": [
+        "Ex-Bourbon",
+        "Sherry",
+        "Port",
+        "Wine",
+        "Virgin Oak",
+        "Mixed"
+      ],
       "description": "Type of cask used for aging"
     },
     "isLimitedEdition": {
@@ -50,7 +74,12 @@
     "priceRange": {
       "type": "string",
       "title": "Price Range",
-      "enum": ["Budget", "Mid-range", "Premium", "Ultra-premium"],
+      "enum": [
+        "Budget",
+        "Mid-range",
+        "Premium",
+        "Ultra-premium"
+      ],
       "description": "Price category of the whiskey"
     },
     "rating": {
@@ -66,5 +95,9 @@
       "description": "Your personal tasting notes"
     }
   },
-  "required": ["whiskeyName", "whiskeyType"]
+  "required": [
+    "reviewer",
+    "whiskeyName",
+    "whiskeyType"
+  ]
 }

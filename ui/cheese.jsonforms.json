@@ -3,7 +3,62 @@
   "elements": [
     {
       "type": "Group",
-      "label": "Basic Information",
+      "label": "👤 Reviewer Information",
+      "elements": [
+        {
+          "type": "HorizontalLayout",
+          "elements": [
+            {
+              "type": "Control",
+              "scope": "#/properties/reviewer/properties/firstName"
+            },
+            {
+              "type": "Control",
+              "scope": "#/properties/reviewer/properties/lastName"
+            }
+          ]
+        },
+        {
+          "type": "Control",
+          "scope": "#/properties/reviewer/properties/email"
+        },
+        {
+          "type": "HorizontalLayout",
+          "elements": [
+            {
+              "type": "Control",
+              "scope": "#/properties/reviewer/properties/dateOfBirth"
+            },
+            {
+              "type": "Control",
+              "scope": "#/properties/reviewer/properties/experienceLevel"
+            }
+          ]
+        },
+        {
+          "type": "Group",
+          "label": "Location",
+          "elements": [
+            {
+              "type": "HorizontalLayout",
+              "elements": [
+                {
+                  "type": "Control",
+                  "scope": "#/properties/reviewer/properties/location/properties/country"
+                },
+                {
+                  "type": "Control",
+                  "scope": "#/properties/reviewer/properties/location/properties/city"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "Group",
+      "label": "🧀 Cheese Information",
       "elements": [
         {
           "type": "Control",
@@ -58,7 +113,7 @@
     },
     {
       "type": "Group",
-      "label": "Your Review",
+      "label": "Evaluation",
       "elements": [
         {
           "type": "Control",

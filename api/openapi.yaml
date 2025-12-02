@@ -1,7 +1,7 @@
 openapi: 3.0.3
 info:
   title: Learn JSON Forms API
-  description: API for managing cheese and whiskey data using shared JSON Schema definitions
+  description: API for managing cheese and whiskey evaluation data with reviewer information using shared JSON Schema definitions
   version: 1.0.0
   contact:
     name: API Support
