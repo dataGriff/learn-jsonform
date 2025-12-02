@@ -17,6 +17,7 @@ This project demonstrates how to use JSON Forms with React and Material UI to cr
 - Form data validation
 - Real-time JSON data preview
 - Tabbed interface for multiple forms
+- **OpenAPI specification** aligned with form schemas for API development
 
 ## Prerequisites
 
@@ -73,16 +74,22 @@ The application will be available at `http://localhost:5173`
 
 ```
 learn-jsonform/
+├── schemas/                     # Shared JSON Schemas (single source of truth)
+│   ├── cheese.schema.json       # Cheese data schema
+│   └── whiskey.schema.json      # Whiskey data schema
+├── ui/                          # JSON Forms UI definitions
+│   ├── cheese.jsonforms.json    # Cheese form layout
+│   └── whiskey.jsonforms.json   # Whiskey form layout
+├── api/
+│   ├── openapi.yaml            # API specification (references shared schemas)
+│   ├── validate-schemas.js     # Architecture validation script
+│   └── README.md               # API documentation
 ├── src/
 │   ├── forms/
 │   │   ├── cheese/
-│   │   │   ├── schema.json      # JSON Schema for cheese form
-│   │   │   ├── uischema.json    # UI Schema for cheese form layout
-│   │   │   └── index.ts         # Exports for cheese form
+│   │   │   └── index.ts         # Exports (imports from shared schemas)
 │   │   ├── whiskey/
-│   │   │   ├── schema.json      # JSON Schema for whiskey form
-│   │   │   ├── uischema.json    # UI Schema for whiskey form layout
-│   │   │   └── index.ts         # Exports for whiskey form
+│   │   │   └── index.ts         # Exports (imports from shared schemas)
 │   │   └── index.ts             # Main forms exports
 │   ├── App.tsx                  # Main application component
 │   ├── main.tsx                 # Application entry point
@@ -94,9 +101,17 @@ learn-jsonform/
 
 ## Understanding JSON Forms
 
-### JSON Schema
+### Shared Schema Architecture
 
-The JSON Schema defines the data structure and validation rules for your form. Example from the cheese form:
+This project uses a **single source of truth** approach for schemas:
+
+- **Data Schemas** (`schemas/*.schema.json`): Define data structure and validation rules
+- **UI Schemas** (`ui/*.jsonforms.json`): Define form layout and presentation
+- **OpenAPI Integration**: API specification references the same shared schemas
+
+### JSON Schema (Data Definition)
+
+The shared JSON Schema defines the data structure and validation rules. Example from `schemas/cheese.schema.json`:
 
 ```json
 {
@@ -117,9 +132,9 @@ The JSON Schema defines the data structure and validation rules for your form. E
 }
 ```
 
-### UI Schema
+### UI Schema (Layout Definition)
 
-The UI Schema controls the layout and appearance of your form:
+The UI Schema controls the layout and appearance. Example from `ui/cheese.jsonforms.json`:
 
 ```json
 {
@@ -138,6 +153,32 @@ The UI Schema controls the layout and appearance of your form:
   ]
 }
 ```
+
+### Benefits of Shared Architecture
+
+- **No Duplication**: Single schema definition used everywhere
+- **Automatic Sync**: Forms and API always use identical data structures  
+- **Easy Maintenance**: Update schema once, changes apply everywhere
+- **Type Safety**: Consistent validation across all channels
+
+## API Integration
+
+This project includes an OpenAPI specification (`api/openapi.yaml`) that aligns with the JSON Forms schemas, enabling:
+
+- **Multi-channel access**: Use the same data structures in forms and APIs
+- **Code generation**: Generate client SDKs and server stubs
+- **Documentation**: Interactive API documentation
+- **Schema validation**: Ensure forms and API stay in sync
+
+### API Validation
+
+Validate that your JSON Forms schemas are consistent with the OpenAPI specification:
+
+```bash
+task validate-schemas
+```
+
+See `api/README.md` for detailed API documentation and usage examples.
 
 ## Technologies Used
 

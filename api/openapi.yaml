@@ -1,0 +1,482 @@
+openapi: 3.0.3
+info:
+  title: Learn JSON Forms API
+  description: API for managing cheese and whiskey data using shared JSON Schema definitions
+  version: 1.0.0
+  contact:
+    name: API Support
+    email: support@example.com
+  license:
+    name: MIT
+    url: https://opensource.org/licenses/MIT
+
+servers:
+  - url: http://localhost:3000/api/v1
+    description: Local development server
+  - url: https://api.example.com/v1
+    description: Production server
+
+paths:
+  /cheeses:
+    get:
+      summary: List all cheeses
+      description: Retrieve a list of all cheese records
+      tags:
+        - Cheese
+      parameters:
+        - name: limit
+          in: query
+          description: Maximum number of cheeses to return
+          schema:
+            type: integer
+            minimum: 1
+            maximum: 100
+            default: 20
+        - name: offset
+          in: query
+          description: Number of cheeses to skip
+          schema:
+            type: integer
+            minimum: 0
+            default: 0
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Cheese'
+                  meta:
+                    $ref: '#/components/schemas/PaginationMeta'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '500':
+          $ref: '#/components/responses/InternalError'
+
+    post:
+      summary: Create a new cheese
+      description: Add a new cheese record
+      tags:
+        - Cheese
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: './schemas/cheese.schema.json'
+      responses:
+        '201':
+          description: Cheese created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Cheese'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '422':
+          $ref: '#/components/responses/ValidationError'
+        '500':
+          $ref: '#/components/responses/InternalError'
+
+  /cheeses/{id}:
+    get:
+      summary: Get cheese by ID
+      description: Retrieve a specific cheese record
+      tags:
+        - Cheese
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Cheese ID
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Cheese'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalError'
+
+    put:
+      summary: Update cheese by ID
+      description: Update a specific cheese record
+      tags:
+        - Cheese
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Cheese ID
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: './schemas/cheese.schema.json'
+      responses:
+        '200':
+          description: Cheese updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Cheese'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '422':
+          $ref: '#/components/responses/ValidationError'
+        '500':
+          $ref: '#/components/responses/InternalError'
+
+    delete:
+      summary: Delete cheese by ID
+      description: Remove a specific cheese record
+      tags:
+        - Cheese
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Cheese ID
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '204':
+          description: Cheese deleted successfully
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalError'
+
+  /whiskeys:
+    get:
+      summary: List all whiskeys
+      description: Retrieve a list of all whiskey records
+      tags:
+        - Whiskey
+      parameters:
+        - name: limit
+          in: query
+          description: Maximum number of whiskeys to return
+          schema:
+            type: integer
+            minimum: 1
+            maximum: 100
+            default: 20
+        - name: offset
+          in: query
+          description: Number of whiskeys to skip
+          schema:
+            type: integer
+            minimum: 0
+            default: 0
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Whiskey'
+                  meta:
+                    $ref: '#/components/schemas/PaginationMeta'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '500':
+          $ref: '#/components/responses/InternalError'
+
+    post:
+      summary: Create a new whiskey
+      description: Add a new whiskey record
+      tags:
+        - Whiskey
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: './schemas/whiskey.schema.json'
+      responses:
+        '201':
+          description: Whiskey created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Whiskey'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '422':
+          $ref: '#/components/responses/ValidationError'
+        '500':
+          $ref: '#/components/responses/InternalError'
+
+  /whiskeys/{id}:
+    get:
+      summary: Get whiskey by ID
+      description: Retrieve a specific whiskey record
+      tags:
+        - Whiskey
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Whiskey ID
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Whiskey'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalError'
+
+    put:
+      summary: Update whiskey by ID
+      description: Update a specific whiskey record
+      tags:
+        - Whiskey
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Whiskey ID
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: './schemas/whiskey.schema.json'
+      responses:
+        '200':
+          description: Whiskey updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Whiskey'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '422':
+          $ref: '#/components/responses/ValidationError'
+        '500':
+          $ref: '#/components/responses/InternalError'
+
+    delete:
+      summary: Delete whiskey by ID
+      description: Remove a specific whiskey record
+      tags:
+        - Whiskey
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Whiskey ID
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '204':
+          description: Whiskey deleted successfully
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalError'
+
+components:
+  schemas:
+    # Output schemas extend shared schemas with metadata
+    Cheese:
+      allOf:
+        - $ref: './schemas/cheese.schema.json'
+        - type: object
+          required:
+            - id
+            - createdAt
+            - updatedAt
+          properties:
+            id:
+              type: string
+              format: uuid
+              description: "Unique identifier for the cheese record"
+            createdAt:
+              type: string
+              format: date-time
+              description: "Timestamp when the record was created"
+            updatedAt:
+              type: string
+              format: date-time
+              description: "Timestamp when the record was last updated"
+
+    Whiskey:
+      allOf:
+        - $ref: './schemas/whiskey.schema.json'
+        - type: object
+          required:
+            - id
+            - createdAt
+            - updatedAt
+          properties:
+            id:
+              type: string
+              format: uuid
+              description: "Unique identifier for the whiskey record"
+            createdAt:
+              type: string
+              format: date-time
+              description: "Timestamp when the record was created"
+            updatedAt:
+              type: string
+              format: date-time
+              description: "Timestamp when the record was last updated"
+
+    PaginationMeta:
+      type: object
+      properties:
+        total:
+          type: integer
+          description: "Total number of records"
+        limit:
+          type: integer
+          description: "Number of records per page"
+        offset:
+          type: integer
+          description: "Number of records skipped"
+        hasNext:
+          type: boolean
+          description: "Whether there are more records available"
+
+    Error:
+      type: object
+      required:
+        - error
+        - message
+      properties:
+        error:
+          type: string
+          description: "Error type"
+        message:
+          type: string
+          description: "Human-readable error message"
+        details:
+          type: array
+          items:
+            type: string
+          description: "Additional error details"
+
+    ValidationError:
+      type: object
+      required:
+        - error
+        - message
+        - validationErrors
+      properties:
+        error:
+          type: string
+          enum: ["VALIDATION_ERROR"]
+        message:
+          type: string
+        validationErrors:
+          type: array
+          items:
+            type: object
+            properties:
+              field:
+                type: string
+                description: "Field that failed validation"
+              message:
+                type: string
+                description: "Validation error message"
+              code:
+                type: string
+                description: "Validation error code"
+
+  responses:
+    BadRequest:
+      description: Bad request
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            error: "BAD_REQUEST"
+            message: "Invalid request parameters"
+
+    NotFound:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            error: "NOT_FOUND"
+            message: "Resource not found"
+
+    ValidationError:
+      description: Validation error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ValidationError'
+          example:
+            error: "VALIDATION_ERROR"
+            message: "Request validation failed"
+            validationErrors:
+              - field: "cheeseName"
+                message: "Cheese name is required"
+                code: "REQUIRED"
+
+    InternalError:
+      description: Internal server error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            error: "INTERNAL_ERROR"
+            message: "An unexpected error occurred"
+
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+
+security:
+  - BearerAuth: []
+
+tags:
+  - name: Cheese
+    description: Operations related to cheese records
+  - name: Whiskey
+    description: Operations related to whiskey records

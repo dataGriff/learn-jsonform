@@ -73,6 +73,11 @@ tasks:
     cmds:
       - npx tsc --noEmit
 
+  validate-schemas:
+    desc: Validate consistency between JSON Forms and OpenAPI schemas
+    cmds:
+      - node api/validate-schemas.js
+
   help:
     desc: Show help information about the project
     cmds:
@@ -93,6 +98,7 @@ tasks:
         echo "  task lint        - Run linter"
         echo "  task lint:fix    - Run linter with auto-fix"
         echo "  task typecheck   - Run TypeScript type checking"
+        echo "  task validate-schemas - Check JSON Forms ↔ OpenAPI consistency"
         echo "  task clean       - Remove all artifacts"
         echo "  task clean:build - Remove build artifacts only"
         echo "  task rebuild     - Clean and rebuild"

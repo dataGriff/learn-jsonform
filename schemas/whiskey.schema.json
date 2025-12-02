@@ -9,7 +9,7 @@
     "whiskeyType": {
       "type": "string",
       "title": "Whiskey Type",
-      "enum": ["Single Malt", "Blended", "Bourbon", "Rye", "Irish", "Japanese", "Canadian"],
+      "enum": ["Single Malt", "Blended", "Bourbon", "Rye", "Irish", "Japanese", "Canadian", "Banana"],
       "description": "Type of whiskey"
     },
     "distillery": {

@@ -1,5 +1,5 @@
-import schema from './schema.json';
-import uischema from './uischema.json';
+import schema from '../../../schemas/cheese.schema.json';
+import uischema from '../../../ui/cheese.jsonforms.json';
 
 export const cheeseSchema = schema;
 export const cheeseUiSchema = uischema;
