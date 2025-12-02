@@ -1,0 +1,58 @@
+{
+  "type": "object",
+  "properties": {
+    "cheeseName": {
+      "type": "string",
+      "title": "Cheese Name",
+      "description": "Name of your favorite cheese"
+    },
+    "cheeseType": {
+      "type": "string",
+      "title": "Cheese Type",
+      "enum": ["Soft", "Semi-soft", "Semi-hard", "Hard", "Blue"],
+      "description": "Type of cheese based on texture"
+    },
+    "origin": {
+      "type": "string",
+      "title": "Country of Origin",
+      "description": "Where the cheese originates from"
+    },
+    "milkType": {
+      "type": "string",
+      "title": "Milk Type",
+      "enum": ["Cow", "Goat", "Sheep", "Buffalo", "Mixed"],
+      "description": "Type of milk used to make the cheese"
+    },
+    "ageInMonths": {
+      "type": "integer",
+      "title": "Age (months)",
+      "description": "How long the cheese has been aged",
+      "minimum": 0,
+      "maximum": 120
+    },
+    "flavorProfile": {
+      "type": "string",
+      "title": "Flavor Profile",
+      "enum": ["Mild", "Medium", "Sharp", "Extra Sharp"],
+      "description": "Intensity of the cheese flavor"
+    },
+    "isPasteurized": {
+      "type": "boolean",
+      "title": "Pasteurized",
+      "description": "Whether the cheese is made from pasteurized milk"
+    },
+    "rating": {
+      "type": "integer",
+      "title": "Your Rating",
+      "description": "Rate this cheese from 1 to 5",
+      "minimum": 1,
+      "maximum": 5
+    },
+    "notes": {
+      "type": "string",
+      "title": "Tasting Notes",
+      "description": "Your personal notes about this cheese"
+    }
+  },
+  "required": ["cheeseName", "cheeseType"]
+}

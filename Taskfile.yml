@@ -1,0 +1,100 @@
+version: '3'
+
+vars:
+  PROJECT_NAME: learn-jsonform
+  DIST_DIR: dist
+
+tasks:
+  default:
+    desc: Show available tasks
+    cmds:
+      - task --list
+
+  install:
+    desc: Install project dependencies
+    cmds:
+      - npm install
+    sources:
+      - package.json
+    generates:
+      - node_modules/.package-lock.json
+
+  dev:
+    desc: Start development server
+    cmds:
+      - npm run dev
+
+  build:
+    desc: Build the application for production
+    deps: [install]
+    cmds:
+      - npm run build
+
+  preview:
+    desc: Preview the production build locally
+    deps: [build]
+    cmds:
+      - npm run preview
+
+  lint:
+    desc: Run ESLint to check code quality
+    cmds:
+      - npm run lint
+
+  lint:fix:
+    desc: Run ESLint and automatically fix issues
+    cmds:
+      - npm run lint -- --fix
+
+  clean:
+    desc: Remove build artifacts and node_modules
+    cmds:
+      - rm -rf {{.DIST_DIR}}
+      - rm -rf node_modules
+    status:
+      - test ! -d {{.DIST_DIR}}
+      - test ! -d node_modules
+
+  clean:build:
+    desc: Remove build artifacts only
+    cmds:
+      - rm -rf {{.DIST_DIR}}
+    status:
+      - test ! -d {{.DIST_DIR}}
+
+  rebuild:
+    desc: Clean build artifacts and rebuild
+    cmds:
+      - task: clean:build
+      - task: build
+
+  typecheck:
+    desc: Run TypeScript type checking
+    cmds:
+      - npx tsc --noEmit
+
+  help:
+    desc: Show help information about the project
+    cmds:
+      - |
+        echo "================================================================"
+        echo "         {{.PROJECT_NAME}} - JSON Forms Demo"
+        echo "================================================================"
+        echo ""
+        echo "This project demonstrates JSON Forms with two forms:"
+        echo "  - Cheese Form: Capture information about cheese preferences"
+        echo "  - Whiskey Form: Capture information about whiskey preferences"
+        echo ""
+        echo "Available tasks:"
+        echo "  task install     - Install dependencies"
+        echo "  task dev         - Start development server"
+        echo "  task build       - Build for production"
+        echo "  task preview     - Preview production build"
+        echo "  task lint        - Run linter"
+        echo "  task lint:fix    - Run linter with auto-fix"
+        echo "  task typecheck   - Run TypeScript type checking"
+        echo "  task clean       - Remove all artifacts"
+        echo "  task clean:build - Remove build artifacts only"
+        echo "  task rebuild     - Clean and rebuild"
+        echo ""
+        echo "For more information, see README.md"
