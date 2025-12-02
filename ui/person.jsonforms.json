@@ -1,0 +1,60 @@
+{
+  "type": "VerticalLayout",
+  "elements": [
+    {
+      "type": "Group",
+      "label": "Personal Information",
+      "elements": [
+        {
+          "type": "HorizontalLayout",
+          "elements": [
+            {
+              "type": "Control",
+              "scope": "#/properties/firstName"
+            },
+            {
+              "type": "Control",
+              "scope": "#/properties/lastName"
+            }
+          ]
+        },
+        {
+          "type": "Control",
+          "scope": "#/properties/email"
+        },
+        {
+          "type": "Control",
+          "scope": "#/properties/dateOfBirth"
+        }
+      ]
+    },
+    {
+      "type": "Group",
+      "label": "Contact Details",
+      "elements": [
+        {
+          "type": "Control",
+          "scope": "#/properties/phoneNumber"
+        },
+        {
+          "type": "Control",
+          "scope": "#/properties/address"
+        }
+      ]
+    },
+    {
+      "type": "Group",
+      "label": "Additional Information",
+      "elements": [
+        {
+          "type": "Control",
+          "scope": "#/properties/occupation"
+        },
+        {
+          "type": "Control",
+          "scope": "#/properties/preferredLanguage"
+        }
+      ]
+    }
+  ]
+}

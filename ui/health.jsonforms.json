@@ -1,0 +1,65 @@
+{
+  "type": "VerticalLayout",
+  "elements": [
+    {
+      "type": "Group",
+      "label": "Allergies",
+      "elements": [
+        {
+          "type": "Control",
+          "scope": "#/properties/hasAllergies"
+        },
+        {
+          "type": "Control",
+          "scope": "#/properties/allergies",
+          "rule": {
+            "effect": "SHOW",
+            "condition": {
+              "scope": "#/properties/hasAllergies",
+              "schema": {
+                "const": true
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "type": "Group",
+      "label": "Medications & Lifestyle",
+      "elements": [
+        {
+          "type": "Control",
+          "scope": "#/properties/medications"
+        },
+        {
+          "type": "HorizontalLayout",
+          "elements": [
+            {
+              "type": "Control",
+              "scope": "#/properties/smokingStatus"
+            },
+            {
+              "type": "Control",
+              "scope": "#/properties/alcoholConsumption"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "Group",
+      "label": "Health Conditions",
+      "elements": [
+        {
+          "type": "Control",
+          "scope": "#/properties/healthConditions"
+        },
+        {
+          "type": "Control",
+          "scope": "#/properties/emergencyContact"
+        }
+      ]
+    }
+  ]
+}

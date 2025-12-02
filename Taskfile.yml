@@ -83,30 +83,72 @@ tasks:
     cmds:
       - node bin/sync-person-schema.js
 
+  docker:build:
+    desc: Build Docker image for multi-tenant deployment
+    cmds:
+      - docker build -t jsonforms-app .
+
+  docker:run:brewery:
+    desc: Run brewery tenant (whiskey + cheese)
+    deps: [docker:build]
+    cmds:
+      - docker run -p 3001:80 -e TENANT_FORMS="whiskey,cheese" -e TENANT_NAME="Brewery Corp" -e TENANT_PRIMARY_COLOR="#8B4513" jsonforms-app
+
+  docker:run:healthcare:
+    desc: Run healthcare tenant (person + health) 
+    deps: [docker:build]
+    cmds:
+      - docker run -p 3002:80 -e TENANT_FORMS="person,health" -e TENANT_NAME="Healthcare Inc" -e TENANT_PRIMARY_COLOR="#2E8B57" jsonforms-app
+
+  docker:run:food:
+    desc: Run food service tenant (cheese only)
+    deps: [docker:build]
+    cmds:
+      - docker run -p 3003:80 -e TENANT_FORMS="cheese" -e TENANT_NAME="Gourmet Foods Ltd" -e TENANT_PRIMARY_COLOR="#FF6B35" jsonforms-app
+
+  docker:stop:
+    desc: Stop all running tenant containers
+    cmds:
+      - docker stop $(docker ps -q --filter ancestor=jsonforms-app) || true
+
   help:
     desc: Show help information about the project
     cmds:
       - |
         echo "================================================================"
-        echo "         {{.PROJECT_NAME}} - JSON Forms Demo"
+        echo "         {{.PROJECT_NAME}} - JSON Forms Multi-Tenant Demo"
         echo "================================================================"
         echo ""
-        echo "This project demonstrates JSON Forms with two forms:"
-        echo "  - Cheese Form: Capture information about cheese preferences"
-        echo "  - Whiskey Form: Capture information about whiskey preferences"
+        echo "This project demonstrates multi-tenant JSON Forms deployment:"
+        echo "  🏢 Multiple companies can run their own form configurations"
+        echo "  📋 Available forms: cheese, whiskey, person, health"
+        echo "  🔧 Environment-driven configuration (no code changes needed)"
+        echo "  🐳 Container-based deployment with isolated tenants"
         echo ""
         echo "Available tasks:"
-        echo "  task install     - Install dependencies"
-        echo "  task dev         - Start development server"
-        echo "  task build       - Build for production"
-        echo "  task preview     - Preview production build"
-        echo "  task lint        - Run linter"
-        echo "  task lint:fix    - Run linter with auto-fix"
-        echo "  task typecheck   - Run TypeScript type checking"
-        echo "  task validate-schemas - Check JSON Forms ↔ OpenAPI consistency"
-        echo "  task sync-person-schema - Sync person details across schemas"
-        echo "  task clean       - Remove all artifacts"
-        echo "  task clean:build - Remove build artifacts only"
-        echo "  task rebuild     - Clean and rebuild"
+        echo "  📦 Core tasks:"
+        echo "    task install          - Install dependencies"
+        echo "    task dev              - Start development server"
+        echo "    task build            - Build for production"
+        echo "    task preview          - Preview production build"
+        echo "    task lint             - Run linter"
+        echo "    task lint:fix         - Run linter with auto-fix"
+        echo "    task typecheck        - Run TypeScript type checking"
+        echo ""
+        echo "  🐳 Docker multi-tenant tasks:"
+        echo "    task docker:build     - Build multi-tenant Docker image"
+        echo "    task docker:run:brewery   - Run brewery tenant (whiskey + cheese)"
+        echo "    task docker:run:healthcare - Run healthcare tenant (person + health)"
+        echo "    task docker:run:food  - Run food service tenant (cheese only)"
+        echo "    task docker:stop      - Stop all tenant containers"
+        echo ""
+        echo "  🔧 Development tasks:"
+        echo "    task validate-schemas - Check JSON Forms ↔ OpenAPI consistency"
+        echo "    task sync-person-schema - Sync person details across schemas"
+        echo "    task clean            - Remove all artifacts"
+        echo "    task rebuild          - Clean and rebuild"
+        echo ""
+        echo "  🚀 Quick multi-tenant demo:"
+        echo "    ./demo-tenants.sh     - Start 4 different tenant configurations"
         echo ""
         echo "For more information, see README.md"
