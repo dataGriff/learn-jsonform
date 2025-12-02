@@ -12,6 +12,9 @@ dist
 dist-ssr
 *.local
 
+# Task cache
+.task
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
