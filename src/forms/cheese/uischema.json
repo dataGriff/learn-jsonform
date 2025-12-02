@@ -1,0 +1,77 @@
+{
+  "type": "VerticalLayout",
+  "elements": [
+    {
+      "type": "Group",
+      "label": "Basic Information",
+      "elements": [
+        {
+          "type": "Control",
+          "scope": "#/properties/cheeseName"
+        },
+        {
+          "type": "HorizontalLayout",
+          "elements": [
+            {
+              "type": "Control",
+              "scope": "#/properties/cheeseType"
+            },
+            {
+              "type": "Control",
+              "scope": "#/properties/milkType"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "Group",
+      "label": "Details",
+      "elements": [
+        {
+          "type": "HorizontalLayout",
+          "elements": [
+            {
+              "type": "Control",
+              "scope": "#/properties/origin"
+            },
+            {
+              "type": "Control",
+              "scope": "#/properties/ageInMonths"
+            }
+          ]
+        },
+        {
+          "type": "HorizontalLayout",
+          "elements": [
+            {
+              "type": "Control",
+              "scope": "#/properties/flavorProfile"
+            },
+            {
+              "type": "Control",
+              "scope": "#/properties/isPasteurized"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "Group",
+      "label": "Your Review",
+      "elements": [
+        {
+          "type": "Control",
+          "scope": "#/properties/rating"
+        },
+        {
+          "type": "Control",
+          "scope": "#/properties/notes",
+          "options": {
+            "multi": true
+          }
+        }
+      ]
+    }
+  ]
+}

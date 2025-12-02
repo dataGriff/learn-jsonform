@@ -1,0 +1,70 @@
+{
+  "type": "object",
+  "properties": {
+    "whiskeyName": {
+      "type": "string",
+      "title": "Whiskey Name",
+      "description": "Name of the whiskey"
+    },
+    "whiskeyType": {
+      "type": "string",
+      "title": "Whiskey Type",
+      "enum": ["Single Malt", "Blended", "Bourbon", "Rye", "Irish", "Japanese", "Canadian"],
+      "description": "Type of whiskey"
+    },
+    "distillery": {
+      "type": "string",
+      "title": "Distillery",
+      "description": "Name of the distillery"
+    },
+    "region": {
+      "type": "string",
+      "title": "Region",
+      "description": "Region where the whiskey is produced"
+    },
+    "ageStatement": {
+      "type": "integer",
+      "title": "Age Statement (years)",
+      "description": "Age of the whiskey in years",
+      "minimum": 0,
+      "maximum": 50
+    },
+    "abv": {
+      "type": "number",
+      "title": "ABV (%)",
+      "description": "Alcohol by volume percentage",
+      "minimum": 40,
+      "maximum": 70
+    },
+    "caskType": {
+      "type": "string",
+      "title": "Cask Type",
+      "enum": ["Ex-Bourbon", "Sherry", "Port", "Wine", "Virgin Oak", "Mixed"],
+      "description": "Type of cask used for aging"
+    },
+    "isLimitedEdition": {
+      "type": "boolean",
+      "title": "Limited Edition",
+      "description": "Whether this is a limited edition release"
+    },
+    "priceRange": {
+      "type": "string",
+      "title": "Price Range",
+      "enum": ["Budget", "Mid-range", "Premium", "Ultra-premium"],
+      "description": "Price category of the whiskey"
+    },
+    "rating": {
+      "type": "integer",
+      "title": "Your Rating",
+      "description": "Rate this whiskey from 1 to 5",
+      "minimum": 1,
+      "maximum": 5
+    },
+    "tastingNotes": {
+      "type": "string",
+      "title": "Tasting Notes",
+      "description": "Your personal tasting notes"
+    }
+  },
+  "required": ["whiskeyName", "whiskeyType"]
+}

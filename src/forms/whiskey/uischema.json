@@ -1,0 +1,96 @@
+{
+  "type": "VerticalLayout",
+  "elements": [
+    {
+      "type": "Group",
+      "label": "Basic Information",
+      "elements": [
+        {
+          "type": "Control",
+          "scope": "#/properties/whiskeyName"
+        },
+        {
+          "type": "HorizontalLayout",
+          "elements": [
+            {
+              "type": "Control",
+              "scope": "#/properties/whiskeyType"
+            },
+            {
+              "type": "Control",
+              "scope": "#/properties/distillery"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "Group",
+      "label": "Production Details",
+      "elements": [
+        {
+          "type": "HorizontalLayout",
+          "elements": [
+            {
+              "type": "Control",
+              "scope": "#/properties/region"
+            },
+            {
+              "type": "Control",
+              "scope": "#/properties/caskType"
+            }
+          ]
+        },
+        {
+          "type": "HorizontalLayout",
+          "elements": [
+            {
+              "type": "Control",
+              "scope": "#/properties/ageStatement"
+            },
+            {
+              "type": "Control",
+              "scope": "#/properties/abv"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "Group",
+      "label": "Additional Info",
+      "elements": [
+        {
+          "type": "HorizontalLayout",
+          "elements": [
+            {
+              "type": "Control",
+              "scope": "#/properties/priceRange"
+            },
+            {
+              "type": "Control",
+              "scope": "#/properties/isLimitedEdition"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "Group",
+      "label": "Your Review",
+      "elements": [
+        {
+          "type": "Control",
+          "scope": "#/properties/rating"
+        },
+        {
+          "type": "Control",
+          "scope": "#/properties/tastingNotes",
+          "options": {
+            "multi": true
+          }
+        }
+      ]
+    }
+  ]
+}
