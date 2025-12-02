@@ -9,6 +9,11 @@ Your JSON Forms application now supports multi-tenant deployment using Docker co
 task docker:build
 ```
 
+> **Note**: The `docker:build` task automatically:
+> - Runs `sync-public` to resolve schema `$ref` dependencies and copy files to `public/` folder
+> - Inlines referenced schemas (e.g., `person.schema.json` into `whiskey.schema.json`) so they work in the browser
+> - Copies UI definitions to ensure forms load correctly in the container
+
 ### 2. Run different tenant configurations
 
 **Brewery Corporation** (whiskey + cheese forms):
@@ -71,3 +76,23 @@ This will create:
 ✅ **Complete Isolation** - Each tenant runs in separate container  
 ✅ **Shared Schema Architecture** - Consistent data models across all tenants  
 ✅ **Runtime Configuration** - No rebuild needed for new tenant combinations
+
+## Troubleshooting
+
+### Forms Don't Render
+
+If you see "Loading forms..." or forms don't appear:
+
+1. **Clear browser cache** - The most common issue
+   - Hard refresh: `Ctrl+Shift+R` (Windows/Linux) or `Cmd+Shift+R` (Mac)
+   - Or open in incognito/private browsing mode
+   
+2. **Check browser console** (F12) for errors
+   - Look for schema loading errors
+   - Verify schemas are being fetched successfully
+
+3. **Verify schemas are resolved**
+   ```bash
+   curl http://localhost:3001/schemas/whiskey.schema.json | jq '.properties.reviewer.type'
+   # Should return: "object" (not a $ref)
+   ```

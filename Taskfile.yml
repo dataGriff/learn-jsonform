@@ -24,9 +24,23 @@ tasks:
     cmds:
       - npm run dev
 
+  sync-public:
+    desc: Sync schemas and UI files to public folder for Docker builds
+    cmds:
+      - mkdir -p public/schemas public/ui
+      - node bin/resolve-schema-refs.cjs
+      - cp -r ui/* public/ui/
+    sources:
+      - schemas/**/*
+      - ui/**/*
+      - bin/resolve-schema-refs.cjs
+    generates:
+      - public/schemas/**/*
+      - public/ui/**/*
+
   build:
     desc: Build the application for production
-    deps: [install]
+    deps: [install, sync-public]
     cmds:
       - npm run build
 
@@ -85,6 +99,7 @@ tasks:
 
   docker:build:
     desc: Build Docker image for multi-tenant deployment
+    deps: [build]
     cmds:
       - docker build -t jsonforms-app .
 

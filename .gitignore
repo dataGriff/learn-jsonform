@@ -15,6 +15,10 @@ dist-ssr
 # Task cache
 .task
 
+# Public folder copies (generated from schemas and ui)
+public/schemas/
+public/ui/
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json

@@ -70,7 +70,9 @@ function App() {
         
         for (const formName of config.forms) {
           try {
+            console.log(`Loading form: ${formName}`);
             const formDef = await FormRegistry.loadForm(formName);
+            console.log(`Successfully loaded form: ${formName}`, formDef);
             forms.set(formName, formDef);
             setFormData(prev => ({ ...prev, [formName]: {} }));
           } catch (error) {
@@ -93,7 +95,22 @@ function App() {
   }, []);
 
   if (!tenantConfig) {
-    return <div>Loading tenant configuration...</div>;
+    return (
+      <Container maxWidth="lg" sx={{ mt: 4 }}>
+        <Typography variant="h5">Loading tenant configuration...</Typography>
+      </Container>
+    );
+  }
+
+  if (loadedForms.size === 0 && !loadError) {
+    return (
+      <Container maxWidth="lg" sx={{ mt: 4 }}>
+        <Typography variant="h5">Loading forms...</Typography>
+        <Typography variant="body2" sx={{ mt: 2 }}>
+          Forms to load: {tenantConfig.forms.join(', ')}
+        </Typography>
+      </Container>
+    );
   }
 
   const theme = createTheme({

@@ -9,19 +9,24 @@ RUN npm run build
 
 FROM nginx:alpine
 
-# Copy the built app
+# Copy the built app (includes schemas and ui in dist)
 COPY --from=builder /app/dist /usr/share/nginx/html
 
-# Copy schemas and UI files as static assets
-COPY --from=builder /app/schemas /usr/share/nginx/html/schemas
-COPY --from=builder /app/ui /usr/share/nginx/html/ui
-
-# Create nginx config for SPA routing
+# Create nginx config for SPA routing with proper static file handling
 RUN echo 'server { \
     listen 80; \
     server_name localhost; \
     root /usr/share/nginx/html; \
     index index.html; \
+    \
+    # Serve static assets directly \
+    location ~* \.(json|js|css|png|jpg|jpeg|gif|ico|svg|woff|woff2|ttf|eot)$ { \
+        try_files $uri =404; \
+        expires 1y; \
+        add_header Cache-Control "public, immutable"; \
+    } \
+    \
+    # SPA fallback for all other routes \
     location / { \
         try_files $uri $uri/ /index.html; \
     } \
