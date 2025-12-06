@@ -20,6 +20,7 @@ This is a JSON Forms learning project that demonstrates declarative form buildin
 - **Linting**: ESLint with React-specific rules (`task lint` or `task lint:fix`)
 - **Architecture Validation**: `task validate-schemas` ensures shared schema architecture integrity
 - **Docker Builds**: `task sync-public` resolves schema refs before building - always run before `docker build`
+- **Schema References**: Schemas use `$ref: "./other.schema.json"` - no manual synchronization needed
 
 ## Adding New Forms
 1. Create schema: `schemas/{form-name}.schema.json` (data structure/validation)

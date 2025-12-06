@@ -92,11 +92,6 @@ tasks:
     cmds:
       - node api/validate-schemas.js
 
-  sync-person-schema:
-    desc: Synchronize person details across all evaluation schemas
-    cmds:
-      - node bin/sync-person-schema.js
-
   docker:build:
     desc: Build Docker image for multi-tenant deployment
     deps: [build]
@@ -159,7 +154,6 @@ tasks:
         echo ""
         echo "  🔧 Development tasks:"
         echo "    task validate-schemas - Check JSON Forms ↔ OpenAPI consistency"
-        echo "    task sync-person-schema - Sync person details across schemas"
         echo "    task clean            - Remove all artifacts"
         echo "    task rebuild          - Clean and rebuild"
         echo ""
