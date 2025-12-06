@@ -17,7 +17,7 @@ const __dirname = dirname(__filename);
 
 // Check that shared schemas exist
 const sharedSchemas = ['person.schema.json', 'health.schema.json', 'cheese.schema.json', 'whiskey.schema.json'];
-const uiSchemas = ['cheese.jsonforms.json', 'whiskey.jsonforms.json'];
+const uiSchemas = ['cheese.jsonforms.json', 'whiskey.jsonforms.json', 'person.jsonforms.json', 'health.jsonforms.json'];
 
 console.log('🔍 Shared Schema Architecture Validation');
 console.log('========================================');
@@ -69,7 +69,9 @@ if (existsSync(openApiPath)) {
   // Check for shared schema references
   const expectedRefs = [
     './schemas/cheese.schema.json',
-    './schemas/whiskey.schema.json'
+    './schemas/whiskey.schema.json',
+    './schemas/person.schema.json',
+    './schemas/health.schema.json'
   ];
   
   for (const ref of expectedRefs) {
@@ -87,7 +89,7 @@ if (existsSync(openApiPath)) {
 
 // Validate form imports
 console.log('\n📦 Checking form imports...');
-const formDirs = ['cheese', 'whiskey'];
+const formDirs = ['cheese', 'whiskey', 'person', 'health'];
 
 for (const formName of formDirs) {
   const indexPath = join(__dirname, `../src/forms/${formName}/index.ts`);

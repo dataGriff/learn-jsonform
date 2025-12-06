@@ -1,7 +1,7 @@
 openapi: 3.0.3
 info:
   title: Learn JSON Forms API
-  description: API for managing cheese and whiskey evaluation data with reviewer information using shared JSON Schema definitions
+  description: API for managing cheese, whiskey, person, and health data using shared JSON Schema definitions for perfect form/API synchronization
   version: 1.0.0
   contact:
     name: API Support
@@ -313,6 +313,302 @@ paths:
         '500':
           $ref: '#/components/responses/InternalError'
 
+  /persons:
+    get:
+      summary: List all persons
+      description: Retrieve a list of all person records
+      tags:
+        - Person
+      parameters:
+        - name: limit
+          in: query
+          description: Maximum number of persons to return
+          schema:
+            type: integer
+            minimum: 1
+            maximum: 100
+            default: 20
+        - name: offset
+          in: query
+          description: Number of persons to skip
+          schema:
+            type: integer
+            minimum: 0
+            default: 0
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Person'
+                  meta:
+                    $ref: '#/components/schemas/PaginationMeta'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '500':
+          $ref: '#/components/responses/InternalError'
+
+    post:
+      summary: Create a new person
+      description: Add a new person record
+      tags:
+        - Person
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '../schemas/person.schema.json'
+      responses:
+        '201':
+          description: Person created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Person'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '422':
+          $ref: '#/components/responses/ValidationError'
+        '500':
+          $ref: '#/components/responses/InternalError'
+
+  /persons/{id}:
+    get:
+      summary: Get person by ID
+      description: Retrieve a specific person record
+      tags:
+        - Person
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Person ID
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Person'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalError'
+
+    put:
+      summary: Update person by ID
+      description: Update a specific person record
+      tags:
+        - Person
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Person ID
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '../schemas/person.schema.json'
+      responses:
+        '200':
+          description: Person updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Person'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '422':
+          $ref: '#/components/responses/ValidationError'
+        '500':
+          $ref: '#/components/responses/InternalError'
+
+    delete:
+      summary: Delete person by ID
+      description: Remove a specific person record
+      tags:
+        - Person
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Person ID
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '204':
+          description: Person deleted successfully
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalError'
+
+  /health:
+    get:
+      summary: List all health records
+      description: Retrieve a list of all health records
+      tags:
+        - Health
+      parameters:
+        - name: limit
+          in: query
+          description: Maximum number of health records to return
+          schema:
+            type: integer
+            minimum: 1
+            maximum: 100
+            default: 20
+        - name: offset
+          in: query
+          description: Number of health records to skip
+          schema:
+            type: integer
+            minimum: 0
+            default: 0
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Health'
+                  meta:
+                    $ref: '#/components/schemas/PaginationMeta'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '500':
+          $ref: '#/components/responses/InternalError'
+
+    post:
+      summary: Create a new health record
+      description: Add a new health record
+      tags:
+        - Health
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '../schemas/health.schema.json'
+      responses:
+        '201':
+          description: Health record created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Health'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '422':
+          $ref: '#/components/responses/ValidationError'
+        '500':
+          $ref: '#/components/responses/InternalError'
+
+  /health/{id}:
+    get:
+      summary: Get health record by ID
+      description: Retrieve a specific health record
+      tags:
+        - Health
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Health record ID
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Health'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalError'
+
+    put:
+      summary: Update health record by ID
+      description: Update a specific health record
+      tags:
+        - Health
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Health record ID
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '../schemas/health.schema.json'
+      responses:
+        '200':
+          description: Health record updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Health'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '422':
+          $ref: '#/components/responses/ValidationError'
+        '500':
+          $ref: '#/components/responses/InternalError'
+
+    delete:
+      summary: Delete health record by ID
+      description: Remove a specific health record
+      tags:
+        - Health
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Health record ID
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '204':
+          description: Health record deleted successfully
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalError'
+
 components:
   schemas:
     # Output schemas extend shared schemas with metadata
@@ -361,10 +657,48 @@ components:
               description: "Timestamp when the record was last updated"
 
     Person:
-      $ref: '../schemas/person.schema.json'
+      allOf:
+        - $ref: '../schemas/person.schema.json'
+        - type: object
+          required:
+            - id
+            - createdAt
+            - updatedAt
+          properties:
+            id:
+              type: string
+              format: uuid
+              description: "Unique identifier for the person record"
+            createdAt:
+              type: string
+              format: date-time
+              description: "Timestamp when the record was created"
+            updatedAt:
+              type: string
+              format: date-time
+              description: "Timestamp when the record was last updated"
 
     Health:
-      $ref: '../schemas/health.schema.json'
+      allOf:
+        - $ref: '../schemas/health.schema.json'
+        - type: object
+          required:
+            - id
+            - createdAt
+            - updatedAt
+          properties:
+            id:
+              type: string
+              format: uuid
+              description: "Unique identifier for the health record"
+            createdAt:
+              type: string
+              format: date-time
+              description: "Timestamp when the record was created"
+            updatedAt:
+              type: string
+              format: date-time
+              description: "Timestamp when the record was last updated"
 
     PaginationMeta:
       type: object
@@ -486,3 +820,7 @@ tags:
     description: Operations related to cheese records
   - name: Whiskey
     description: Operations related to whiskey records
+  - name: Person
+    description: Operations related to person records
+  - name: Health
+    description: Operations related to health records
