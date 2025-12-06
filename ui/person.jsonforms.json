@@ -3,7 +3,7 @@
   "elements": [
     {
       "type": "Group",
-      "label": "Personal Information",
+      "label": "Personal Info",
       "elements": [
         {
           "type": "HorizontalLayout",
@@ -33,12 +33,82 @@
       "label": "Contact Details",
       "elements": [
         {
-          "type": "Control",
-          "scope": "#/properties/phoneNumber"
+          "type": "HorizontalLayout",
+          "elements": [
+            {
+              "type": "Control",
+              "scope": "#/properties/contactDetails/properties/phone"
+            },
+            {
+              "type": "Control",
+              "scope": "#/properties/contactDetails/properties/alternatePhone"
+            }
+          ]
         },
         {
+          "type": "Group",
+          "label": "Address",
+          "elements": [
+            {
+              "type": "Control",
+              "scope": "#/properties/contactDetails/properties/address/properties/street"
+            },
+            {
+              "type": "HorizontalLayout",
+              "elements": [
+                {
+                  "type": "Control",
+                  "scope": "#/properties/contactDetails/properties/address/properties/city"
+                },
+                {
+                  "type": "Control",
+                  "scope": "#/properties/contactDetails/properties/address/properties/state"
+                }
+              ]
+            },
+            {
+              "type": "HorizontalLayout",
+              "elements": [
+                {
+                  "type": "Control",
+                  "scope": "#/properties/contactDetails/properties/address/properties/postalCode"
+                },
+                {
+                  "type": "Control",
+                  "scope": "#/properties/contactDetails/properties/address/properties/country"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "Group",
+      "label": "Location",
+      "elements": [
+        {
+          "type": "HorizontalLayout",
+          "elements": [
+            {
+              "type": "Control",
+              "scope": "#/properties/location/properties/country"
+            },
+            {
+              "type": "Control",
+              "scope": "#/properties/location/properties/city"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "Group",
+      "label": "Experience",
+      "elements": [
+        {
           "type": "Control",
-          "scope": "#/properties/address"
+          "scope": "#/properties/experienceLevel"
         }
       ]
     },
@@ -48,11 +118,61 @@
       "elements": [
         {
           "type": "Control",
-          "scope": "#/properties/occupation"
+          "scope": "#/properties/additionalInformation/properties/bio",
+          "options": {
+            "multi": true
+          }
         },
         {
           "type": "Control",
-          "scope": "#/properties/preferredLanguage"
+          "scope": "#/properties/additionalInformation/properties/interests",
+          "options": {
+            "showSortButtons": true
+          }
+        },
+        {
+          "type": "Control",
+          "scope": "#/properties/additionalInformation/properties/skills",
+          "options": {
+            "showSortButtons": true,
+            "detail": {
+              "type": "HorizontalLayout",
+              "elements": [
+                {
+                  "type": "Control",
+                  "scope": "#/properties/name"
+                },
+                {
+                  "type": "Control",
+                  "scope": "#/properties/level"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "type": "Group",
+          "label": "Preferences",
+          "elements": [
+            {
+              "type": "Control",
+              "scope": "#/properties/additionalInformation/properties/preferences/properties/newsletter"
+            },
+            {
+              "type": "Group",
+              "label": "Notifications",
+              "elements": [
+                {
+                  "type": "Control",
+                  "scope": "#/properties/additionalInformation/properties/preferences/properties/notifications/properties/email"
+                },
+                {
+                  "type": "Control",
+                  "scope": "#/properties/additionalInformation/properties/preferences/properties/notifications/properties/sms"
+                }
+              ]
+            }
+          ]
         }
       ]
     }

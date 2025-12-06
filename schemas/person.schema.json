@@ -31,6 +31,50 @@
       "description": "Person's date of birth",
       "format": "date"
     },
+    "contactDetails": {
+      "type": "object",
+      "title": "Contact Details",
+      "description": "Contact information for the person",
+      "properties": {
+        "phone": {
+          "type": "string",
+          "title": "Phone Number",
+          "description": "Primary phone number"
+        },
+        "alternatePhone": {
+          "type": "string",
+          "title": "Alternate Phone",
+          "description": "Secondary phone number"
+        },
+        "address": {
+          "type": "object",
+          "title": "Address",
+          "description": "Home address",
+          "properties": {
+            "street": {
+              "type": "string",
+              "title": "Street Address"
+            },
+            "city": {
+              "type": "string",
+              "title": "City"
+            },
+            "state": {
+              "type": "string",
+              "title": "State/Province"
+            },
+            "postalCode": {
+              "type": "string",
+              "title": "Postal Code"
+            },
+            "country": {
+              "type": "string",
+              "title": "Country"
+            }
+          }
+        }
+      }
+    },
     "location": {
       "type": "object",
       "title": "Location",
@@ -55,6 +99,71 @@
       "title": "Experience Level",
       "description": "Level of experience with the subject",
       "enum": ["Beginner", "Intermediate", "Advanced", "Expert"]
+    },
+    "additionalInformation": {
+      "type": "object",
+      "title": "Additional Information",
+      "description": "Additional details about the person",
+      "properties": {
+        "bio": {
+          "type": "string",
+          "title": "Biography",
+          "description": "Brief biography or description"
+        },
+        "interests": {
+          "type": "array",
+          "title": "Interests",
+          "description": "List of interests or hobbies",
+          "items": {
+            "type": "string"
+          }
+        },
+        "skills": {
+          "type": "array",
+          "title": "Skills",
+          "description": "Technical or professional skills",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string",
+                "title": "Skill Name"
+              },
+              "level": {
+                "type": "string",
+                "title": "Proficiency Level",
+                "enum": ["Beginner", "Intermediate", "Advanced", "Expert"]
+              }
+            },
+            "required": ["name", "level"]
+          }
+        },
+        "preferences": {
+          "type": "object",
+          "title": "Preferences",
+          "description": "User preferences",
+          "properties": {
+            "newsletter": {
+              "type": "boolean",
+              "title": "Subscribe to Newsletter"
+            },
+            "notifications": {
+              "type": "object",
+              "title": "Notification Settings",
+              "properties": {
+                "email": {
+                  "type": "boolean",
+                  "title": "Email Notifications"
+                },
+                "sms": {
+                  "type": "boolean",
+                  "title": "SMS Notifications"
+                }
+              }
+            }
+          }
+        }
+      }
     }
   },
   "required": ["firstName", "lastName", "email"]

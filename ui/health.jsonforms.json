@@ -54,10 +54,16 @@
         {
           "type": "Control",
           "scope": "#/properties/healthConditions"
-        },
+        }
+      ]
+    },
+    {
+      "type": "Group",
+      "label": "Consent",
+      "elements": [
         {
           "type": "Control",
-          "scope": "#/properties/emergencyContact"
+          "scope": "#/properties/consentToDataUse"
         }
       ]
     }
